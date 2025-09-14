@@ -1,8 +1,6 @@
-﻿using Hospital.Business.Services;
-using Hospital.Business.Services.Abstract;
+﻿using Hospital.Business.Services.Abstract;
 using Hospital.DAL.DataContext.Entities;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Hospital.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -48,7 +46,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
             }
             else
             {
-                // Eğer kullanıcı dosya seçmediyse, required property yüzünden ModelState invalid
+                
                 ModelState.AddModelError("ImageFile", "Lütfen bir fotoğraf seçin.");
                 return View(room);
             }
@@ -72,7 +70,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
 
             var existingRoom = await _roomService.GetByIdAsync(room.Id);
 
-            // Dosya upload
+            
             if (ImageFile != null && ImageFile.Length > 0)
             {
                 var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
@@ -88,9 +86,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
 
                 existingRoom.ImagePath = "/uploads/" + fileName;
             }
-            // else eski ImagePath zaten mevcut, değiştirmeye gerek yok
-
-            // Diğer alanları güncelle
+           
             existingRoom.RoomNumber = room.RoomNumber;
             existingRoom.Type = room.Type;
             existingRoom.IsAvailable = room.IsAvailable;

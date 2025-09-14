@@ -4,24 +4,24 @@
     <h2>Create New News</h2>
 
     <form asp-action="Create" method="post" enctype="multipart/form-data">
-        <!-- 🔹 Tüm hata mesajlarını topluca göster -->
+      
         <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-        <!-- Title -->
+        
         <div class="form-group mb-3">
             <label asp-for="Title"></label>
             <input asp-for="Title" class="form-control" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
 
-        <!-- Description -->
+       
         <div class="form-group mb-3">
             <label asp-for="Description"></label>
             <textarea asp-for="Description" class="form-control"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
-        <!-- News Image -->
+      
         <div class="form-group mb-3">
             <label>News Image</label>
             <input type="file" name="ImageFile" class="form-control" />

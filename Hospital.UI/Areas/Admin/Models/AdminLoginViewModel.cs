@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace Hospital.UI.Areas.Admin.Models
 {
     public class AdminLoginViewModel

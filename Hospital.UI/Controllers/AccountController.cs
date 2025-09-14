@@ -3,8 +3,6 @@ using Hospital.UI.Models;
 using Mailing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-
 namespace Hospital.UI.Controllers
 {
     public class AccountController : Controller
@@ -20,13 +18,13 @@ namespace Hospital.UI.Controllers
             _mailService = mailService;
         }
 
-        // Register GET
+        
         public IActionResult Register()
         {
             return View();
         }
 
-        // Register POST
+       
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
@@ -39,7 +37,7 @@ namespace Hospital.UI.Controllers
                 Email = registerViewModel.Email
             };
 
-            // Identity şifreyi hashleyip kaydeder
+           
             var result = await _userManager.CreateAsync(user, registerViewModel.Password);
 
             if (!result.Succeeded)
@@ -51,17 +49,16 @@ namespace Hospital.UI.Controllers
                 return View(registerViewModel);
             }
 
-            // Kullanıcı başarılı kayıt olduktan sonra Login sayfasına yönlendir
+            
             return RedirectToAction("Login", "Account");
         }
 
-        // Login GET
         public IActionResult Login()
         {
             return View();
         }
 
-        // Login POST
+       
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
@@ -72,7 +69,7 @@ namespace Hospital.UI.Controllers
 
             if (existuser == null)
             {
-                // Debug / test için ayrı mesaj, prod’da tek mesaj olmalı
+               
                 ModelState.AddModelError(string.Empty, "Username or Password is incorrect");
                 return View(loginViewModel);
             }
@@ -93,7 +90,6 @@ namespace Hospital.UI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // Logout
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

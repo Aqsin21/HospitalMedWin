@@ -1,8 +1,6 @@
 ﻿using Hospital.Business.Services.Abstract;
-using Hospital.Business.Services.Concrete;
 using Hospital.DAL.DataContext.Entities;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Hospital.UI.Areas.Admin.Controllers
 {
     public class DepartmentController : AdminController
@@ -28,7 +26,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
             if (!ModelState.IsValid) return View(department);
             if (await _departmentService.ExistsAsync(n => n.Name == department.Name))
             {
-                ModelState.AddModelError("Title", "Bu isimde department mevcut.");
+                ModelState.AddModelError("Title", "This Department is Exist.");
                 return View(department);
             }
 

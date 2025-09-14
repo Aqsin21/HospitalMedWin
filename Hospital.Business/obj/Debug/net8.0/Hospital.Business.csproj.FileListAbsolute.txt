@@ -29,3 +29,4 @@ C:\Users\HP\Desktop\Hospital\Hospital.Business\obj\Debug\net8.0\Hospital.Busines
 C:\Users\HP\Desktop\Hospital\Hospital.Business\obj\Debug\net8.0\refint\Hospital.Business.dll
 C:\Users\HP\Desktop\Hospital\Hospital.Business\obj\Debug\net8.0\Hospital.Business.pdb
 C:\Users\HP\Desktop\Hospital\Hospital.Business\obj\Debug\net8.0\ref\Hospital.Business.dll
+C:\Users\HP\Desktop\Hospital\Hospital.Business\obj\Debug\net8.0\Hospital.Business.sourcelink.json

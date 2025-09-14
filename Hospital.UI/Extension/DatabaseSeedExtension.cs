@@ -1,8 +1,5 @@
 ﻿using Hospital.DAL.DataContext;
 using Hospital.DAL.DataInitialize;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-
 namespace Hospital.UI.Extensions
 {
     public static class DatabaseSeedExtensions

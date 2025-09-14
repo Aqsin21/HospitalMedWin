@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace Hospital.UI.Models
 {
     public class ResetPasswordViewModel

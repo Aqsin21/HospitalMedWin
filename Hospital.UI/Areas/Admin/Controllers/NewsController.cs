@@ -1,11 +1,6 @@
 ﻿using Hospital.Business.Services.Abstract;
-using Hospital.Business.Services.Concrete;
 using Hospital.DAL.DataContext.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-
 namespace Hospital.UI.Areas.Admin.Controllers
 {
     public class NewsController : AdminController
@@ -31,7 +26,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
             if (!ModelState.IsValid) return View(news);
             if (await _newsService.ExistsAsync(n => n.Title == news.Title))
             {
-                ModelState.AddModelError("Title", "Bu başlıkta bir haber zaten mevcut.");
+                ModelState.AddModelError("Title", "This title with News Exist.");
                 return View(news);
             }
 
@@ -52,7 +47,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
             }
             else
             {
-                // Eğer kullanıcı dosya seçmediyse, required property yüzünden ModelState invalid
+               
                 ModelState.AddModelError("ImageFile", "Lütfen bir fotoğraf seçin.");
                 return View(news);
             }
@@ -74,7 +69,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
 
             var existingNews = await _newsService.GetByIdAsync(news.Id);
 
-            // Dosya upload
+           
             if (ImageFile != null && ImageFile.Length > 0)
             {
                 var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
@@ -90,9 +85,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
 
                 existingNews.ImagePath = "/uploads/" + fileName;
             }
-            // else eski ImagePath zaten mevcut, değiştirmeye gerek yok
-
-            // Diğer alanları güncelle
+            
             existingNews.Title = news.Title;
             existingNews.Description = news.Description;
             

@@ -1,10 +1,7 @@
 ﻿using Hospital.DAL.DataContext;
-using Hospital.DAL.DataContext.Entities;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
 namespace Hospital.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -17,14 +14,14 @@ namespace Hospital.UI.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Login sayfası
+        
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST: Login işlemi
+       
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
@@ -37,7 +34,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
                 return View();
             }
 
-            // Cookie claim oluştur
+            
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
@@ -47,25 +44,25 @@ namespace Hospital.UI.Areas.Admin.Controllers
             var identity = new ClaimsIdentity(claims, "AdminCookie");
             var principal = new ClaimsPrincipal(identity);
 
-            // Cookie yaz (kalıcı olmasın)
+           
             await HttpContext.SignInAsync("AdminCookie", principal, new AuthenticationProperties
             {
-                IsPersistent = false, // Tarayıcı kapanınca cookie silinsin
-                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30), // Maksimum 30 dk
+                IsPersistent = false, 
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30), 
                 AllowRefresh = true
             });
 
-            // Session’a rol ekle (SuperAdminOnly için)
+            
             HttpContext.Session.SetString("AdminRole", user.Role.ToString());
 
             return RedirectToAction("Index", "Dashboard");
         }
 
-        // Logout
+    
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync("AdminCookie");
-            HttpContext.Session.Clear(); // Session’ı da temizle
+            HttpContext.Session.Clear(); 
             return RedirectToAction("Login");
         }
     }

@@ -6,21 +6,21 @@
     <form asp-action="Edit" method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="Id" />
 
-        <!-- Title -->
+       
         <div class="form-group mb-3">
             <label asp-for="Title"></label>
             <input asp-for="Title" class="form-control" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
 
-        <!-- Description -->
+     
         <div class="form-group mb-3">
             <label asp-for="Description"></label>
             <textarea asp-for="Description" class="form-control"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
-        <!-- Current Image -->
+      
         <div class="form-group mb-3">
             <label>Current Image</label><br />
             @if (!string.IsNullOrEmpty(Model.ImagePath))

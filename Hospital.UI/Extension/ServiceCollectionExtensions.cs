@@ -30,7 +30,7 @@ namespace Hospital.UI.Extensions
 
             // Mail
             services.AddTransient<IMailService, MailKitMailService>();
-            services.AddScoped<IPaymentService, PaymentService>();
+           
             return services;
         }
     }

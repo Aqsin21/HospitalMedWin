@@ -15,16 +15,16 @@ namespace Hospital.UI.Controllers
             _context = context;
         }
 
-        // Kullanıcıya tüm doktorları listele
+      
         public async Task<IActionResult> Index()
         {
             var doctors = await _context.Doctors.ToListAsync();
             return View(doctors);
         }
 
-        // Stripe Checkout session oluşturma
+        
         [HttpPost]
-        [IgnoreAntiforgeryToken] // AJAX ile test için
+        [IgnoreAntiforgeryToken] 
         public async Task<IActionResult> CreateCheckoutSession(
             [FromForm] string fullName,
             [FromForm] string email,
@@ -66,29 +66,29 @@ namespace Hospital.UI.Controllers
             var service = new SessionService();
             var session = await service.CreateAsync(options);
 
-            // AJAX uyumlu: sadece session URL döndür
+            
             return Content(session.Url);
         }
 
-        // Başarılı ödeme sonrası → Appointment kaydı
+      
         public async Task<IActionResult> PaymentSuccess(int doctorId, int departmentId, string fullName, string email, DateTime appointmentDate, string? address)
         {
-            // Doctor ve Department nesnelerini çek
+           
             var doctorEntity = await _context.Doctors.FindAsync(doctorId);
             if (doctorEntity == null) return NotFound();
 
             var selectedDepartment = await _context.Departments.FindAsync(departmentId);
             if (selectedDepartment == null) return NotFound();
 
-            // Appointment oluştur
+           
             var appointment = new Appointment
             {
                 FullName = fullName,
                 Email = email,
                 DoctorId = doctorId,
-                Doctor = doctorEntity,             // 🔹 Set et
+                Doctor = doctorEntity,           
                 DepartmentId = departmentId,
-                Department = selectedDepartment,   // 🔹 Set et
+                Department = selectedDepartment,  
                 AppointmentDate = appointmentDate,
                 Address = address,
                 Paid = true
@@ -97,12 +97,12 @@ namespace Hospital.UI.Controllers
             _context.Appointments.Add(appointment);
             await _context.SaveChangesAsync();
 
-            ViewBag.Message = "✅ Payment successful! Your appointment is confirmed.";
+            ViewBag.Message = " Payment successful! Your appointment is confirmed.";
             return View("Success");
         }
         public IActionResult Cancel()
         {
-            ViewBag.Message = "❌ Payment was canceled. Please try again.";
+            ViewBag.Message = " Payment was canceled. Please try again.";
             return View();
         }
     }

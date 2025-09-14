@@ -1,12 +1,6 @@
 ﻿using Hospital.DAL.DataContext;
 using Hospital.DAL.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Hospital.DAL.Repositories.Concret
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class

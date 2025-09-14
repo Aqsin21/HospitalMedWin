@@ -23,3 +23,4 @@ C:\Users\HP\Desktop\Hospital\Mailing\obj\Debug\net8.0\Mailing.dll
 C:\Users\HP\Desktop\Hospital\Mailing\obj\Debug\net8.0\refint\Mailing.dll
 C:\Users\HP\Desktop\Hospital\Mailing\obj\Debug\net8.0\Mailing.pdb
 C:\Users\HP\Desktop\Hospital\Mailing\obj\Debug\net8.0\ref\Mailing.dll
+C:\Users\HP\Desktop\Hospital\Mailing\obj\Debug\net8.0\Mailing.sourcelink.json

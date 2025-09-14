@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 namespace Hospital.UI.Controllers
 {
     public class ErrorController : Controller

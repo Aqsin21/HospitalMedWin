@@ -22,7 +22,7 @@ namespace Hospital.UI.ViewComponents
             if (user == null)
                 return View(new List<Doctor>());
 
-            // Navigation property kullanmadan sadece DoctorId ile sorgu
+            
             var doctorIds = await _dbContext.Favorites
                 .Where(f => f.UserId == user.Id)
                 .Select(f => f.DoctorId)

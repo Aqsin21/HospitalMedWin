@@ -1,5 +1,4 @@
 ﻿using Hospital.DAL.DataContext.Entities;
-
 namespace Hospital.UI.Models
 {
     public class DoctorListViewModel

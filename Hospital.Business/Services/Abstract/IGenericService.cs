@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-
 namespace Hospital.Business.Services.Abstract
 {
     public interface IGenericService<T> where T : class

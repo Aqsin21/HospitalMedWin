@@ -1,9 +1,5 @@
 ﻿using Hospital.DAL.DataContext;
 using Hospital.DAL.DataContext.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Hospital.DAL.DataInitialize
 {
@@ -12,15 +8,14 @@ namespace Hospital.DAL.DataInitialize
         public static void Seed(AppDbContext context)
         {
             try
-            {
-                // Mevcut departmanları göster
+            { 
                 var existingDepartments = context.Departments.ToList();
                 foreach (var dept in existingDepartments)
                 {
                     Console.WriteLine($"Mevcut: {dept.Name}");
                 }
 
-                // Hedef departman listesi
+               
                 var targetDepartments = new List<string>
                 {
                     "Neurology",
@@ -30,7 +25,7 @@ namespace Hospital.DAL.DataInitialize
                     "Emergency Medicine"
                 };
 
-                // Eksik departmanları ekle
+               
                 foreach (var departmentName in targetDepartments)
                 {
                     var exists = context.Departments.Any(d => d.Name == departmentName);
@@ -47,11 +42,11 @@ namespace Hospital.DAL.DataInitialize
                     }
                 }
 
-                // Değişiklikleri kaydet
+               
                 var savedCount = context.SaveChanges();
                 Console.WriteLine($"{savedCount} departman eklendi.");
 
-                // Son durumu göster
+               
                 var finalCount = context.Departments.Count();
                 Console.WriteLine($"Toplam departman sayısı: {finalCount}");
             }

@@ -31,7 +31,7 @@ namespace Hospital.UI.Controllers
                 .ToList();
 
             if (!news.Any())
-                return Content(""); // boşsa bitiriyoruz
+                return Content(""); 
 
             return PartialView("_NewsItems", news);
         }

@@ -27,7 +27,7 @@ namespace Hospital.UI.Controllers
             var doctors = await _dbContext.Doctors
                 .Include(d => d.Department)
                 .OrderBy(d => d.Id)
-                .Take(3) // ilk sayfada 3 doktor
+                .Take(3) 
                 .ToListAsync();
 
             var userFavoriteIds = new List<int>();
@@ -45,7 +45,7 @@ namespace Hospital.UI.Controllers
                 UserFavoriteDoctorIds = userFavoriteIds
             };
 
-            ViewBag.Skip = doctors.Count; // 3
+            ViewBag.Skip = doctors.Count; 
             return View(vm);
         }
 
@@ -70,7 +70,7 @@ namespace Hospital.UI.Controllers
             }
 
             if (!doctors.Any())
-                return Content(""); // Daha fazla doktor yok
+                return Content(""); 
 
             var vm = new DoctorListViewModel
             {
@@ -88,7 +88,7 @@ namespace Hospital.UI.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
-                return Unauthorized(); // AJAX için doğru response
+                return Unauthorized(); 
 
             var favorite = await _dbContext.Favorites
                 .FirstOrDefaultAsync(f => f.UserId == user.Id && f.DoctorId == doctorId);
@@ -108,10 +108,10 @@ namespace Hospital.UI.Controllers
             }
 
             await _dbContext.SaveChangesAsync();
-            return Ok(new { success = true }); // AJAX response
+            return Ok(new { success = true }); 
         }
 
-        // Load More için
+        
       
     }
 }

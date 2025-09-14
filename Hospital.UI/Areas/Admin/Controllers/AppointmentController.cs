@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace Hospital.UI.Areas.Admin.Controllers
-{
-    
-    
+{ 
     public class AppointmentController : AdminController
     {
         private readonly AppDbContext _context;
@@ -14,7 +12,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
             _context = context;
         }
 
-        // Rezervasyonları listele
+      
         public async Task<IActionResult> Index()
         {
             var appointments = await _context.Appointments
@@ -25,7 +23,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
             return View(appointments);
         }
 
-        // Silme onayı
+     
         public async Task<IActionResult> Delete(int id)
         {
             var appointment = await _context.Appointments
@@ -40,8 +38,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
 
             return View(appointment);
         }
-
-        // Silme işlemi
+  
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

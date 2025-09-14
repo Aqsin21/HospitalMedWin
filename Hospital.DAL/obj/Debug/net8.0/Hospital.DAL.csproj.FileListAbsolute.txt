@@ -27,3 +27,4 @@ C:\Users\HP\Desktop\Hospital\Hospital.DAL\obj\Debug\net8.0\refint\Hospital.DAL.d
 C:\Users\HP\Desktop\Hospital\Hospital.DAL\obj\Debug\net8.0\Hospital.DAL.pdb
 C:\Users\HP\Desktop\Hospital\Hospital.DAL\obj\Debug\net8.0\Hospital.DAL.genruntimeconfig.cache
 C:\Users\HP\Desktop\Hospital\Hospital.DAL\obj\Debug\net8.0\ref\Hospital.DAL.dll
+C:\Users\HP\Desktop\Hospital\Hospital.DAL\obj\Debug\net8.0\Hospital.DAL.sourcelink.json

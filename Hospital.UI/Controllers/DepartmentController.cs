@@ -1,8 +1,6 @@
 ﻿using Hospital.DAL.DataContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-
 namespace Hospital.UI.Controllers
 {
     public class DepartmentController : Controller
@@ -14,13 +12,13 @@ namespace Hospital.UI.Controllers
             _dbContext = dbContext;
         }
 
-        // Ana sayfa, boş view döndürüyoruz, veri AJAX ile yüklenecek
+      
         public IActionResult Index()
         {
             return View();
         }
 
-        // Load More için AJAX endpoint
+        
         public async Task<IActionResult> LoadMore(int skip = 0, int take = 4)
         {
             var departments = await _dbContext.Departments
@@ -30,7 +28,7 @@ namespace Hospital.UI.Controllers
                 .Take(take)
                 .ToListAsync();
 
-            ViewBag.Skip = skip; // deptCount için
+            ViewBag.Skip = skip; 
             return PartialView("_DepartmentListPartial", departments);
         }
     }

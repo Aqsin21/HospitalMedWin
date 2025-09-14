@@ -17,14 +17,14 @@ namespace Hospital.UI.Areas.Admin.Controllers
             _departmentService = departmentService;
         }
 
-        // Listeleme
+        
         public async Task<IActionResult> Index()
         {
             var doctors = await _doctorService.GetAllAsync(includeProperties: "Department");
             return View(doctors);
         }
 
-        // Create GET
+       
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -50,7 +50,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
                 return View(doctor);
             }
 
-            // Fotoğraf yükleme
+   
             if (ImageFile != null && ImageFile.Length > 0)
             {
                 var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
@@ -68,12 +68,12 @@ namespace Hospital.UI.Areas.Admin.Controllers
                 doctor.ImagePath = "/uploads/" + fileName;
             }
 
-            // Price zaten modelden geliyor → direkt kaydedilecek
+           
             await _doctorService.CreateAsync(doctor);
             return RedirectToAction(nameof(Index));
         }
 
-        // Edit GET
+ 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -85,8 +85,6 @@ namespace Hospital.UI.Areas.Admin.Controllers
 
             return View(doctor);
         }
-
-        // Edit POST
         [HttpPost]
         public async Task<IActionResult> Edit(Doctor doctor, IFormFile? ImageFile)
         {
