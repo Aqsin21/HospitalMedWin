@@ -567,3 +567,4 @@ C:\Users\HP\Desktop\Hospital\Hospital.UI\obj\Debug\net8.0\refint\Hospital.UI.dll
 C:\Users\HP\Desktop\Hospital\Hospital.UI\obj\Debug\net8.0\Hospital.UI.pdb
 C:\Users\HP\Desktop\Hospital\Hospital.UI\obj\Debug\net8.0\Hospital.UI.genruntimeconfig.cache
 C:\Users\HP\Desktop\Hospital\Hospital.UI\obj\Debug\net8.0\ref\Hospital.UI.dll
+C:\Users\HP\Desktop\Hospital\Hospital.UI\obj\Debug\net8.0\Hospital.UI.sourcelink.json

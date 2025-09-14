@@ -37,7 +37,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
                 return View();
             }
 
-            // Cookie için claim oluştur
+            // Cookie claim oluştur
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
@@ -47,7 +47,16 @@ namespace Hospital.UI.Areas.Admin.Controllers
             var identity = new ClaimsIdentity(claims, "AdminCookie");
             var principal = new ClaimsPrincipal(identity);
 
-            await HttpContext.SignInAsync("AdminCookie", principal);
+            // Cookie yaz (kalıcı olmasın)
+            await HttpContext.SignInAsync("AdminCookie", principal, new AuthenticationProperties
+            {
+                IsPersistent = false, // Tarayıcı kapanınca cookie silinsin
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30), // Maksimum 30 dk
+                AllowRefresh = true
+            });
+
+            // Session’a rol ekle (SuperAdminOnly için)
+            HttpContext.Session.SetString("AdminRole", user.Role.ToString());
 
             return RedirectToAction("Index", "Dashboard");
         }
@@ -56,6 +65,7 @@ namespace Hospital.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync("AdminCookie");
+            HttpContext.Session.Clear(); // Session’ı da temizle
             return RedirectToAction("Login");
         }
     }
