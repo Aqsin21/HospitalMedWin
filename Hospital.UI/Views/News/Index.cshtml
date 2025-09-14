@@ -1,0 +1,80 @@
+﻿@model List<Hospital.DAL.DataContext.Entities.News>
+
+<div class="container my-5">
+    <h1 class="mb-5 text-center">Latest News</h1>
+
+    <!-- News List -->
+    <div class="row g-4" id="newsContainer">
+        @Html.Partial("_NewsItems", Model)
+    </div>
+
+    <!-- Load More -->
+    <div class="row mt-4">
+        <div class="col text-center">
+            <button id="loadMoreNewsBtn" class="btn btn-outline-primary px-4 py-2 shadow-sm">
+                Load More
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Kart stilleri */
+    .news-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background-color: #fff;
+    }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+    .news-card-body {
+        padding: 15px;
+    }
+
+    .news-card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .news-card-text {
+        font-size: 0.95rem;
+        color: #555;
+    }
+</style>
+
+<script>
+    let skip = @Model.Count;
+    const take = 4;
+    const newsContainer = document.getElementById('newsContainer');
+    const loadMoreNewsBtn = document.getElementById('loadMoreNewsBtn');
+
+    loadMoreNewsBtn.addEventListener('click', async () => {
+        try {
+            const response = await fetch(`@Url.Action("LoadMore", "News")?skip=${skip}&take=${take}`);
+            if (response.ok) {
+                const html = await response.text();
+                if (html.trim() === '') {
+                    loadMoreNewsBtn.style.display = 'none';
+                    return;
+                }
+                newsContainer.insertAdjacentHTML('beforeend', html);
+                skip += take;
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+</script>
